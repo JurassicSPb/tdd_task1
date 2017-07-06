@@ -1,6 +1,7 @@
 package com.epam.tdd;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
@@ -54,7 +55,7 @@ public class RangeTest {
         assertThat(one.isBefore(equalsToOne), is(false));
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void isAfterNullArgsTest() throws Exception {
         one.isBefore(null);
     }
@@ -69,18 +70,19 @@ public class RangeTest {
         assertThat(fromMinToZero.isAfter(fullRange), is(false));
     }
 
-    @Test (expected = NullPointerException.class)
-    public void isConcurrentNullArgsTest() throws Exception{
+    @Test(expected = NullPointerException.class)
+    public void isConcurrentNullArgsTest() throws Exception {
+        another.isBefore(null);
     }
 
     @Test
-    public void isConcurrentReturnsTrueTest() throws Exception{
+    public void isConcurrentReturnsTrueTest() throws Exception {
         assertThat(one.isConcurrent(another), is(true));
         assertThat(another.isConcurrent(one), is(true));
     }
 
     @Test
-    public void isConcurrentReturnsFalseTest() throws Exception{
+    public void isConcurrentReturnsFalseTest() throws Exception {
         assertThat(one.isConcurrent(negative), is(false));
         assertThat(negative.isConcurrent(one), is(false));
     }
@@ -92,12 +94,18 @@ public class RangeTest {
     }
 
     @Test
-    public void testThatLowerBoundIsNotCorrect()throws Exception {
-        assertFalse(negative.getLowerBound() == 50L);
+    public void testThatLowerBoundIsNotCorrect() throws Exception {
+        assertThat(negative.getLowerBound(), is(not(50L)));
     }
 
     @Test
-    public void getUpperBound() {
+    public void testThatUpperBoundIsCorrect() throws Exception {
+        assertThat(another.getLowerBound(), is(5L));
+    }
+
+    @Test
+    public void testThatUpperBoundIsNotCorrect() throws Exception {
+        assertThat(fullRange.getLowerBound(), is(not(Long.MAX_VALUE)));
     }
 
     @Test
