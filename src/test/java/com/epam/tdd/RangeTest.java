@@ -87,7 +87,13 @@ public class RangeTest {
 
 
     @Test
-    public void getLowerBound() {
+    public void testThatLowerBoundIsCorrect() throws Exception {
+        assertThat(negative.getLowerBound(), is(-100L));
+    }
+
+    @Test
+    public void testThatLowerBoundIsNotCorrect()throws Exception {
+        assertFalse(negative.getLowerBound() == 50L);
     }
 
     @Test

@@ -43,7 +43,7 @@ public class Range implements RangeInterface{
 
     @Override
     public long getLowerBound() {
-        return 0;
+        return start;
     }
 
     @Override
