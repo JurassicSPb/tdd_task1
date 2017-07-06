@@ -3,6 +3,7 @@ package com.epam.tdd;
 import lombok.Setter;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -53,17 +54,16 @@ public class Range implements RangeInterface {
 
     @Override
     public boolean contains(long value) {
-        for (long i = start; i < end; i++) {
-            if (i == value) {
-                return true;
-            }
-        }
-        return false;
+        return value >= start && value <= end;
     }
 
     @Override
     public List<Long> asList() {
-        return null;
+        List <Long> buffer = new ArrayList<>();
+        for (long i = start; i <= end; i++) {
+            buffer.add(i);
+        }
+        return buffer;
     }
 
     @Override

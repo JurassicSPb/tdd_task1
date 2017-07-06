@@ -9,6 +9,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RangeTest {
     private Range one;
     private Range equalsToOne;
@@ -110,17 +113,29 @@ public class RangeTest {
 
     @Test
     public void containsReturnsTrueTest() throws Exception {
+        assertThat(negative.contains(-5L), is(true));
         assertThat(negative.contains(-50L), is(true));
+        assertThat(negative.contains(-100L), is(true));
     }
 
     @Test
     public void containsReturnsFalseTest() throws Exception {
-        assertThat(one.contains(1000L), is(false));
+        assertThat(one.contains(0L), is(false));
+        assertThat(one.contains(26L), is(false));
     }
 
 
     @Test
-    public void asList() {
+    public void testThatWeCanMakeRangeAsList() throws Exception {
+        List<Long> rangeList = one.asList();
+        List<Long> newList = new ArrayList<>();
+
+        for (int i = (int) one.getStart(); i <= (int) one.getEnd(); i++) {
+            newList.add((long) i);
+        }
+
+        assertArrayEquals(rangeList.toArray(), newList.toArray());
+
     }
 
     @Test
