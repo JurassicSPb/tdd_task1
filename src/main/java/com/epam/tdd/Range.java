@@ -48,7 +48,7 @@ public class Range implements RangeInterface{
 
     @Override
     public long getUpperBound() {
-        return 0;
+        return end;
     }
 
     @Override

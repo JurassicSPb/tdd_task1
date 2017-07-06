@@ -100,12 +100,12 @@ public class RangeTest {
 
     @Test
     public void testThatUpperBoundIsCorrect() throws Exception {
-        assertThat(another.getLowerBound(), is(5L));
+        assertThat(another.getUpperBound(), is(50L));
     }
 
     @Test
     public void testThatUpperBoundIsNotCorrect() throws Exception {
-        assertThat(fullRange.getLowerBound(), is(not(Long.MAX_VALUE)));
+        assertThat(fullRange.getUpperBound(), is(not(Long.MIN_VALUE)));
     }
 
     @Test
