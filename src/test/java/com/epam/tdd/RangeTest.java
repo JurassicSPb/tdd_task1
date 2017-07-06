@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class RangeTest {
@@ -139,6 +140,13 @@ public class RangeTest {
     }
 
     @Test
-    public void asIterator() {
+    public void asIteratorTest() throws Exception {
+        Iterator <Long> iterator = one.asIterator();
+        Long l2 = one.getStart();
+        while (iterator.hasNext()){
+            Long l = iterator.next();
+            assertThat(l, is(l2));
+            l2++;
+        }
     }
 }

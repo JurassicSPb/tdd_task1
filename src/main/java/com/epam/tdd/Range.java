@@ -68,6 +68,18 @@ public class Range implements RangeInterface {
 
     @Override
     public Iterator<Long> asIterator() {
-        return null;
+        return new Iterator<Long>() {
+            long currentIndex = start;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex <= end;
+            }
+
+            @Override
+            public Long next() {
+                return currentIndex++;
+            }
+        };
     }
 }
