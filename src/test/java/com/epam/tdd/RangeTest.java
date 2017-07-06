@@ -109,8 +109,15 @@ public class RangeTest {
     }
 
     @Test
-    public void contains() {
+    public void containsReturnsTrueTest() throws Exception {
+        assertThat(negative.contains(-50L), is(true));
     }
+
+    @Test
+    public void containsReturnsFalseTest() throws Exception {
+        assertThat(one.contains(1000L), is(false));
+    }
+
 
     @Test
     public void asList() {

@@ -9,12 +9,12 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Range implements RangeInterface{
+public class Range implements RangeInterface {
     private long start;
     private long end;
 
     public Range(long start, long end) {
-        if (start >= end){
+        if (start >= end) {
             throw new IllegalArgumentException("Start value should be lower than end");
         }
         this.start = start;
@@ -33,8 +33,8 @@ public class Range implements RangeInterface{
 
     @Override
     public boolean isConcurrent(Range otherRange) {
-        if (this.start<otherRange.end){
-            if (this.end>otherRange.start){
+        if (this.start < otherRange.end) {
+            if (this.end > otherRange.start) {
                 return true;
             }
         }
@@ -53,6 +53,11 @@ public class Range implements RangeInterface{
 
     @Override
     public boolean contains(long value) {
+        for (long i = start; i < end; i++) {
+            if (i == value) {
+                return true;
+            }
+        }
         return false;
     }
 
