@@ -33,6 +33,11 @@ public class Range implements RangeInterface{
 
     @Override
     public boolean isConcurrent(Range otherRange) {
+        if (this.start<otherRange.end){
+            if (this.end>otherRange.start){
+                return true;
+            }
+        }
         return false;
     }
 

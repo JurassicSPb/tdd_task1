@@ -69,9 +69,22 @@ public class RangeTest {
         assertThat(fromMinToZero.isAfter(fullRange), is(false));
     }
 
-    @Test
-    public void isConcurrent() {
+    @Test (expected = NullPointerException.class)
+    public void isConcurrentNullArgsTest() throws Exception{
     }
+
+    @Test
+    public void isConcurrentReturnsTrueTest() throws Exception{
+        assertThat(one.isConcurrent(another), is(true));
+        assertThat(another.isConcurrent(one), is(true));
+    }
+
+    @Test
+    public void isConcurrentReturnsFalseTest() throws Exception{
+        assertThat(one.isConcurrent(negative), is(false));
+        assertThat(negative.isConcurrent(one), is(false));
+    }
+
 
     @Test
     public void getLowerBound() {
