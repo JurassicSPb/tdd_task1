@@ -2,18 +2,17 @@ package com.epam.tdd;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.*;
 
-import com.epam.tdd.Range;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class RangeTest {
     private Range one;
+    private Range equalsToOne;
     private Range another;
     private Range negative;
-    private Range reverseNegative;
     private Range fullRange;
     private Range fromMinToZero;
     private Range fromZeroToMax;
@@ -21,6 +20,7 @@ public class RangeTest {
     @Before
     public void init() throws Exception {
         one = new Range(1, 25);
+        equalsToOne = new Range(1, 25);
         another = new Range(5, 50);
         negative = new Range(-100, -5);
         fullRange = new Range(Long.MIN_VALUE, Long.MAX_VALUE);
@@ -51,10 +51,22 @@ public class RangeTest {
     @Test
     public void isBeforeReturnsFalseTest() throws Exception {
         assertThat(another.isBefore(one), is(false));
+        assertThat(one.isBefore(equalsToOne), is(false));
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void isAfterNullArgsTest() throws Exception {
+        one.isBefore(null);
     }
 
     @Test
-    public void isAfter() {
+    public void isAfterReturnsTrueTest() throws Exception {
+        assertThat(one.isAfter(negative), is(true));
+    }
+
+    @Test
+    public void isAfterReturnsFalseTest() throws Exception {
+        assertThat(fromMinToZero.isAfter(fullRange), is(false));
     }
 
     @Test

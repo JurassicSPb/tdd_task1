@@ -14,7 +14,7 @@ public class Range implements RangeInterface{
     private long end;
 
     public Range(long start, long end) {
-        if (start > end){
+        if (start >= end){
             throw new IllegalArgumentException("Start value should be lower than end");
         }
         this.start = start;
