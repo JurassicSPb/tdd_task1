@@ -142,7 +142,7 @@ public class RangeTest {
     }
 
     @Test
-    public void asIteratorTest() throws Exception {
+    public void asIteratorLogicTest() throws Exception {
         Iterator<Long> iterator = one.asIterator();
         Long l2 = one.getStart();
         while (iterator.hasNext()) {
@@ -150,5 +150,24 @@ public class RangeTest {
             assertThat(l, is(l2));
             l2++;
         }
+    }
+
+    @Test
+    public void asIteratorhasNextTest() throws Exception {
+        Iterator<Long> iterator = another2.asIterator();
+        assertThat(iterator.hasNext(), is(true));
+        iterator.next();
+        assertThat(iterator.hasNext(), is(true));
+        iterator.next();
+        assertThat(iterator.hasNext(), is(true));
+    }
+
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void asIteratorIOOBExceptionTest() throws Exception {
+        Range newRange = new Range(0, 1);
+        Iterator<Long> iterator = newRange.asIterator();
+        iterator.next();
+        iterator.next();
+        iterator.next();
     }
 }

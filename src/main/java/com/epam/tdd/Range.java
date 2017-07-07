@@ -73,6 +73,9 @@ public class Range implements RangeInterface {
 
             @Override
             public Long next() {
+                if (currentIndex > end){
+                    throw new IndexOutOfBoundsException();
+                }
                 return currentIndex++;
             }
         };
