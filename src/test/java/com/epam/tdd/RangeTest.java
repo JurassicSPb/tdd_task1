@@ -41,7 +41,7 @@ public class RangeTest {
             Range reverse = new Range(50, 5);
             reverse.isAfter(negative);
         } catch (IllegalArgumentException e) {
-            assertEquals(e.getMessage(), "Start value should be lower than end");
+            assertEquals(e.getMessage(), "Start value should be lower than endInclusive");
         }
     }
 
@@ -133,7 +133,7 @@ public class RangeTest {
         List<Long> rangeList = one.asList();
         List<Long> newList = new ArrayList<>();
 
-        for (int i = (int) one.getStart(); i <= (int) one.getEnd(); i++) {
+        for (int i = (int) one.getStartInclusive(); i <= (int) one.getEndInclusive(); i++) {
             newList.add((long) i);
         }
 
@@ -143,7 +143,7 @@ public class RangeTest {
     @Test
     public void asIteratorLogicTest() throws Exception {
         Iterator<Long> iterator = one.asIterator();
-        Long l2 = one.getStart();
+        Long l2 = one.getStartInclusive();
         while (iterator.hasNext()) {
             Long l = iterator.next();
             assertThat(l, is(l2));

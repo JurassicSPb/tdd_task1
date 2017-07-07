@@ -11,25 +11,25 @@ import java.util.List;
 @Getter
 @Setter
 public class Range implements RangeInterface {
-    private long start;
-    private long end;
+    private long startInclusive;
+    private long endInclusive;
 
-    public Range(long start, long end) {
-        if (start >= end) {
-            throw new IllegalArgumentException("Start value should be lower than end");
+    public Range(long startInclusive, long endInclusive) {
+        if (startInclusive >= endInclusive) {
+            throw new IllegalArgumentException("Start value should be lower than endInclusive");
         }
-        this.start = start;
-        this.end = end;
+        this.startInclusive = startInclusive;
+        this.endInclusive = endInclusive;
     }
 
     @Override
     public boolean isBefore(Range otherRange) {
-        return this.end < otherRange.start;
+        return this.endInclusive < otherRange.startInclusive;
     }
 
     @Override
     public boolean isAfter(Range otherRange) {
-        return this.start > otherRange.end;
+        return this.startInclusive > otherRange.endInclusive;
     }
 
     @Override
@@ -39,23 +39,23 @@ public class Range implements RangeInterface {
 
     @Override
     public long getLowerBound() {
-        return start;
+        return startInclusive;
     }
 
     @Override
     public long getUpperBound() {
-        return end;
+        return endInclusive;
     }
 
     @Override
     public boolean contains(long value) {
-        return value >= start && value <= end;
+        return value >= startInclusive && value <= endInclusive;
     }
 
     @Override
     public List<Long> asList() {
         List <Long> buffer = new ArrayList<>();
-        for (long i = start; i <= end; i++) {
+        for (long i = startInclusive; i <= endInclusive; i++) {
             buffer.add(i);
         }
         return buffer;
@@ -64,16 +64,16 @@ public class Range implements RangeInterface {
     @Override
     public Iterator<Long> asIterator() {
         return new Iterator<Long>() {
-            long currentIndex = start;
+            long currentIndex = startInclusive;
 
             @Override
             public boolean hasNext() {
-                return currentIndex <= end;
+                return currentIndex <= endInclusive;
             }
 
             @Override
             public Long next() {
-                if (currentIndex > end){
+                if (currentIndex > endInclusive){
                     throw new IndexOutOfBoundsException();
                 }
                 return currentIndex++;
