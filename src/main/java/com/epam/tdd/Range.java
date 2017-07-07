@@ -55,9 +55,7 @@ public class Range implements RangeInterface {
     @Override
     public List<Long> asList() {
         List <Long> buffer = new ArrayList<>();
-        for (long i = startInclusive; i <= endInclusive; i++) {
-            buffer.add(i);
-        }
+        asIterator().forEachRemaining(buffer::add);
         return buffer;
     }
 
@@ -76,7 +74,7 @@ public class Range implements RangeInterface {
                 if (currentIndex > endInclusive){
                     throw new IndexOutOfBoundsException();
                 }
-                return ++currentIndex;
+                return currentIndex++;
             }
         };
     }
