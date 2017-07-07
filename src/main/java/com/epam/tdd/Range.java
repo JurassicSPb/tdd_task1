@@ -24,22 +24,17 @@ public class Range implements RangeInterface {
 
     @Override
     public boolean isBefore(Range otherRange) {
-        return this.start < otherRange.start;
+        return this.end < otherRange.start;
     }
 
     @Override
     public boolean isAfter(Range otherRange) {
-        return this.end > otherRange.end;
+        return this.start > otherRange.end;
     }
 
     @Override
     public boolean isConcurrent(Range otherRange) {
-        if (this.start < otherRange.end) {
-            if (this.end > otherRange.start) {
-                return true;
-            }
-        }
-        return false;
+        return !this.isBefore(otherRange) && !this.isAfter(otherRange);
     }
 
     @Override

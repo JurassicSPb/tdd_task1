@@ -17,6 +17,7 @@ public class RangeTest {
     private Range one;
     private Range equalsToOne;
     private Range another;
+    private Range another2;
     private Range negative;
     private Range fullRange;
     private Range fromMinToZero;
@@ -27,6 +28,7 @@ public class RangeTest {
         one = new Range(1, 25);
         equalsToOne = new Range(1, 25);
         another = new Range(5, 50);
+        another2 = new Range(26, 100);
         negative = new Range(-100, -5);
         fullRange = new Range(Long.MIN_VALUE, Long.MAX_VALUE);
         fromMinToZero = new Range(Long.MIN_VALUE, 0);
@@ -50,7 +52,7 @@ public class RangeTest {
 
     @Test
     public void isBeforeReturnsTrueTest() throws Exception {
-        assertThat(one.isBefore(another), is(true));
+        assertThat(one.isBefore(another2), is(true));
     }
 
     @Test
@@ -141,9 +143,9 @@ public class RangeTest {
 
     @Test
     public void asIteratorTest() throws Exception {
-        Iterator <Long> iterator = one.asIterator();
+        Iterator<Long> iterator = one.asIterator();
         Long l2 = one.getStart();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Long l = iterator.next();
             assertThat(l, is(l2));
             l2++;
