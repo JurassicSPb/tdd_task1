@@ -138,7 +138,6 @@ public class RangeTest {
         }
 
         assertArrayEquals(rangeList.toArray(), newList.toArray());
-
     }
 
     @Test
@@ -153,7 +152,7 @@ public class RangeTest {
     }
 
     @Test
-    public void asIteratorhasNextTest() throws Exception {
+    public void asIteratorHasNextTest() throws Exception {
         Iterator<Long> iterator = another2.asIterator();
         assertThat(iterator.hasNext(), is(true));
         iterator.next();
@@ -162,7 +161,7 @@ public class RangeTest {
         assertThat(iterator.hasNext(), is(true));
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void asIteratorIOOBExceptionTest() throws Exception {
         Range newRange = new Range(0, 1);
         Iterator<Long> iterator = newRange.asIterator();
