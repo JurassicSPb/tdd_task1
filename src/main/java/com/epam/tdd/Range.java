@@ -76,7 +76,7 @@ public class Range implements RangeInterface {
                 if (currentIndex > endInclusive){
                     throw new IndexOutOfBoundsException();
                 }
-                return currentIndex++;
+                return ++currentIndex;
             }
         };
     }

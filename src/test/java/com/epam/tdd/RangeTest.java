@@ -143,7 +143,7 @@ public class RangeTest {
     @Test
     public void asIteratorLogicTest() throws Exception {
         Iterator<Long> iterator = one.asIterator();
-        Long l2 = one.getStartInclusive();
+        Long l2 = one.getStartInclusive()+1;
         while (iterator.hasNext()) {
             Long l = iterator.next();
             assertThat(l, is(l2));
